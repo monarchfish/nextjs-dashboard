@@ -17,30 +17,59 @@ const links = [
     name: 'Invoices',
     href: '/dashboard/invoices',
     icon: DocumentDuplicateIcon,
+    children: [
+      { name: 'List', href: '/dashboard/invoices/list' },
+      { name: 'Create', href: '/dashboard/invoices/create' },
+    ],
   },
   { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {
   const pathname = usePathname();
+
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+        const isActive = pathname.startsWith(link.href);
+
         return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
-              {
-                'bg-sky-100 text-blue-600': pathname === link.href,
-              },
+          <div key={link.name}>
+            <Link
+              href={link.href}
+              className={clsx(
+                'flex items-center gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600',
+                {
+                  'bg-sky-100 text-blue-600': isActive,
+                },
+              )}
+            >
+              <LinkIcon className="w-6" />
+              <span>{link.name}</span>
+            </Link>
+            {link.children && (
+              <div className="ml-4 mt-2 space-y-1">
+                {link.children.map((child) => {
+                  const isChildActive = pathname === child.href;
+                  return (
+                    <Link
+                      key={child.name}
+                      href={child.href}
+                      className={clsx(
+                        'block rounded-md py-2 px-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600',
+                        {
+                          'bg-sky-100 text-blue-600': isChildActive,
+                        },
+                      )}
+                    >
+                      {child.name}
+                    </Link>
+                  );
+                })}
+              </div>
             )}
-          >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
+          </div>
         );
       })}
     </>
