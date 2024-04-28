@@ -12,6 +12,44 @@ import clsx from 'clsx';
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
+  {
+    name: '管理員',
+    href: '/dashboard/manager',
+    icon: DocumentDuplicateIcon,
+    children: [
+      { name: '我的案件', href: '/dashboard/manager/investment/list' },
+    ],
+  },
+  // {
+  //   name: '投資用戶',
+  //   href: '/user',
+  //   icon: DocumentDuplicateIcon,
+  //   children: [
+  //     { name: '全部案件', href: '/user/investment/list' },
+  //     { name: '我的庫存', href: '/user/investment/inventory' },
+  //     { name: '我的收益', href: '/user/investment/profit' },
+  //   ],
+  // },
+  // {
+  //   name: 'CEO',
+  //   href: '/ceo',
+  //   icon: DocumentDuplicateIcon,
+  //   children: [
+  //     { name: '全部案件', href: '/investment/list' },
+  //     { name: '月現金流報表', href: '/report/cashFlow' },
+  //   ],
+  // },
+  // {
+  //   name: '財務人員',
+  //   href: '/finance',
+  //   icon: DocumentDuplicateIcon,
+  //   children: [
+  //     { name: '全部案件', href: '/finance/investment/list' },
+  //     { name: '用戶申購審核表', href: '/finance/purchase' },
+  //     { name: '分潤審核表', href: '/finance/profit' },
+  //     { name: '投資到期列表', href: '/finance/investment/expire' },
+  //   ],
+  // },
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   {
     name: 'Invoices',
