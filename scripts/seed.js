@@ -320,8 +320,8 @@ async function seedMonthProfit(client) {
     const insertedMonthProfit = await Promise.all(
       cash_flows.map(
         (month_profits) => client.sql`
-        INSERT INTO month_profit (investment_id, month, profit, profit_date)
-        VALUES (${month_profit.investment_id}, ${month_profit.month}, ${month_profit.profit}, ${month_profit.profit_date})
+        INSERT INTO month_profit (investment_id, month, profit, profit_date, status)
+        VALUES (${month_profit.investment_id}, ${month_profit.month}, ${month_profit.profit}, ${month_profit.profit_date}, ${month_profit.status})
         ON CONFLICT (id) DO NOTHING;
       `,
       ),

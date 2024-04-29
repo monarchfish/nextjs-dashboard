@@ -1,7 +1,7 @@
 'use client';
 
-import { updateInvestment } from '@/app/lib/investmentTableAction';
-import { InvestmentForm } from '@/app/lib/investmentDefinitions';
+import { updateInvestment } from '@/app/lib/manager/actions';
+import { InvestmentForm } from '@/app/lib/manager/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { useFormState } from 'react-dom';

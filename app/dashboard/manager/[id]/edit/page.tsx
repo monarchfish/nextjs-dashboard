@@ -1,12 +1,12 @@
-import Form from '@/app/ui/investmentTable/editTable';
-import Breadcrumbs from '@/app/ui/breadcrumbs';
-import { fetchInvestmentById } from '@/app/lib/api/investment';
+import Form from '@/app/ui/manager/edit-form';
+import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import { fetchInvestmentById } from '@/app/lib/manager/data';
 import { notFound } from 'next/navigation';
 
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
     const [investment] = await Promise.all([
-        fetchInvestmentById(id),
+        fetchInvestmentById(id)
     ]);
  
     if (!investment) {
@@ -17,10 +17,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Investment', href: '/dashboard/manager' },
+                    { label: '案件列表', href: '/dashboard/manager/list' },
                     {
-                        label: 'Edit Investment',
-                        href: `/dashboard/manager/investment/${id}/edit`,
+                        label: '修改案件',
+                        href: `/dashboard/manager/${id}/edit`,
                         active: true,
                     },
                 ]}

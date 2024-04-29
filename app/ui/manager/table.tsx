@@ -1,15 +1,20 @@
-import { InvestmentTableType } from '@/app/lib/investmentTable';
 import { DeleteButton, EditButton } from './buttons';
+import { fetchInvestmentList } from '@/app/lib/manager/data';
+import { formatDateToLocal } from '@/app/lib/utils';
 
 export default async function InvestmentTable({
-  dataList,
+  query,
+  currentPage,
   showDelete = true,
   showEdit = true
 }: {
-  dataList: InvestmentTableType[];
+  query: string;
+  currentPage: number;
   showDelete?: boolean;
   showEdit?: boolean;
 }) {
+  const dataList = await fetchInvestmentList(query, currentPage);
+
   return (
     <div className="w-full">
       <div className="mt-6 flow-root">
@@ -20,16 +25,25 @@ export default async function InvestmentTable({
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                   <tr>
                     <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                      案件ID
+                      ID
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      案件名稱
+                      名稱
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      創建日期
+                      描述
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      更新日期
+                      單位價格
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      預期報酬
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      到期時間
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      經理人
                     </th>
                     {(showEdit || showDelete) && (
                       <th scope="col" className="px-3 py-5 font-medium">
@@ -46,13 +60,22 @@ export default async function InvestmentTable({
                         {data.id}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.caseName}
+                        {data.investment_name}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.createTime}
+                        {data.description}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {data.price}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
-                        {data.updateTime}
+                        {data.profit}%
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {formatDateToLocal(data.exprie_date)}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {data.user_name}
                       </td>
                       {(showEdit || showDelete) && (
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">

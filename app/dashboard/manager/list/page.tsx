@@ -1,14 +1,15 @@
-import { CreateButton } from '@/app/ui/investmentTable/buttons';
-import InvestmentTable from '@/app/ui/investmentTable/table';
+import { CreateButton } from '@/app/ui/manager/buttons';
+import Table from '@/app/ui/manager/table';
 import Pagination from '@/app/ui/pagination';
 import Search from '@/app/ui/search';
 import { lusitana } from '@/app/ui/fonts';
+import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
-import { fetchInvestmentPages, fetchInvestmentList } from '@/app/lib/api/investment';
+import { fetchInvestmentPages } from '@/app/lib/manager/data';
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {
-    title: '我的案件',
+    title: '案件管理',
 };
 
 export default async function Page({
@@ -23,7 +24,6 @@ export default async function Page({
     const currentPage = Number(searchParams?.page) || 1;
  
     const totalPages = await fetchInvestmentPages(query);
-    const list = await fetchInvestmentList();
 
     return (
         <div className="w-full">
@@ -34,8 +34,8 @@ export default async function Page({
                 <Search placeholder="Search investment..." />
                 <CreateButton />
             </div>
-            <Suspense key={query + currentPage}>
-            <InvestmentTable dataList={list} />
+            <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+                <Table query={query} currentPage={currentPage} />
             </Suspense>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages} />

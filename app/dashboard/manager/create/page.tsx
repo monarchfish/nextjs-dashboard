@@ -1,4 +1,4 @@
-import Form from '@/app/ui/investmentTable/createTable';
+import Form from '@/app/ui/manager/create-form';
 import Breadcrumbs from '@/app/ui/breadcrumbs';
  
 export default async function Page() {
@@ -7,10 +7,10 @@ export default async function Page() {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Investment', href: '/dashboard/manager/investment/create' },
+          { label: '案件列表', href: '/dashboard/manager/list' },
           {
-            label: 'Create Investment',
-            href: '/dashboard/manager/investment/create',
+            label: '新建案件',
+            href: '/dashboard/manager/create',
             active: true,
           },
         ]}

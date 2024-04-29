@@ -5,7 +5,7 @@ import {
   CurrencyDollarIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
-import { createInvestment } from '@/app/lib/investmentTableAction';
+import { createInvestment } from '@/app/lib/manager/actions';
 import { useFormState } from 'react-dom';
 
 export default function Form() {
