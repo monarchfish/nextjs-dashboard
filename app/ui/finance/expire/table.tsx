@@ -49,7 +49,7 @@ export default async function InventoryTable({
 
                 <tbody className="divide-y divide-gray-200 text-gray-900">
                   {[4,5,6,7].map((data) => (
-                    <tr key={data.id} className="group">
+                    <tr key={data} className="group">
                       {/* <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {data.id}
                       </td> */}
