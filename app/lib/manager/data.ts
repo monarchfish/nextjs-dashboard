@@ -61,7 +61,7 @@ export async function fetchInvestmentPages(query: string) {
     return totalPages;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch total number of invoices.');
+    throw new Error('Failed to fetch total number of investments.');
   }
 }
 
