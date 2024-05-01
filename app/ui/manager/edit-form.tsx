@@ -4,6 +4,7 @@ import { updateInvestment } from '@/app/lib/manager/actions';
 import { InvestmentForm } from '@/app/lib/manager/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
+import { BaseInput } from '@/app/ui/form';
 import { useFormState } from 'react-dom';
 
 export default function EditTable({
@@ -18,32 +19,49 @@ export default function EditTable({
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
-        {/* 案件名稱 */}
-        <div className="mb-4">
-          <label htmlFor="caseName" className="mb-2 block text-sm font-medium">
-          案件名稱
-          </label>
-          <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="caseName"
-                name="caseName"
-                defaultValue={investment.caseName}
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                aria-describedby="caseName-error"
-              />
-            </div>
-          </div>
-          <div id="caseName-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.caseName &&
-              state.errors.caseName.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))
-            }
-          </div>
-        </div>
+        <BaseInput
+          name="name"
+          label="案件名稱"
+          inputType="text"
+          errors={state.errors?.name ? state.errors.name : []}
+          defaultValue={investment.name}
+        />
+        <BaseInput
+          name="description"
+          label="描述"
+          inputType="text"
+          errors={state.errors?.description ? state.errors.description : []}
+          defaultValue={investment.description}
+        />
+        <BaseInput
+          name="price"
+          label="單位價格"
+          inputType="number"
+          errors={state.errors?.price ? state.errors.price : []}
+          defaultValue={investment.price}
+        />
+        <BaseInput
+          name="amount"
+          label="單位數量"
+          inputType="number"
+          errors={state.errors?.amount ? state.errors.amount : []}
+          defaultValue={investment.amount}
+        />
+        <BaseInput
+          name="profit"
+          label="預期報酬"
+          inputType="number"
+          errors={state.errors?.profit ? state.errors.profit : []}
+          defaultValue={investment.profit}
+        />
+        <BaseInput
+          name="exprie_date"
+          label="到期時間"
+          inputType="text"
+          errors={state.errors?.exprie_date ? state.errors.exprie_date : []}
+          defaultValue={new Date(investment.exprie_date).toISOString().split('T')[0]}
+        />
+
         <div id="create-error" aria-live="polite" aria-atomic="true">
           <p className="mt-2 text-sm text-red-500">
             {state.message}
@@ -52,7 +70,7 @@ export default function EditTable({
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
-          href="/dashboard/manager/investment/list"
+          href="/dashboard/manager/list"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           取消

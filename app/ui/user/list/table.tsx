@@ -1,8 +1,8 @@
-import { DeleteButton, EditButton } from './buttons';
+import { ViewButton } from './buttons';
 import { fetchInvestmentList } from '@/app/lib/manager/data';
 import { formatDateToLocal } from '@/app/lib/utils';
 
-export default async function InvestmentTable({
+export default async function UserListTable({
   query,
   currentPage,
   showDelete = true,
@@ -31,7 +31,7 @@ export default async function InvestmentTable({
                       名稱
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      描述
+                      描述A
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       單位價格
@@ -80,16 +80,9 @@ export default async function InvestmentTable({
                       {(showEdit || showDelete) && (
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                           <div className="flex justify-end gap-3">
-                            {showEdit && (
-                              <EditButton
-                                id={data.id}
-                              />
-                            )}
-                            {showDelete && (
-                              <DeleteButton
-                                id={data.id}
-                              />
-                            )}
+                            <ViewButton
+                              id={data.id}
+                            />
                           </div>
                         </td>
                       )}

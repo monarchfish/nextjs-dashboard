@@ -1,8 +1,11 @@
 export type InvestmentForm = {
     id: string;
-    caseName: string;
-    createTime: string;
-    updateTime: string;
+    name: string;
+    description: string;
+    exprie_date: string;
+    price: number;
+    amount: number;
+    profit: number;
 };
 
 export type ManagerTable = {

@@ -29,9 +29,9 @@ const links = [
     href: '',
     icon: UserIcon,
     children: [
-      { name: '案件總攬', href: '/user/investment/list' },
-      { name: '投資庫存', href: '/user/investment/inventory' },
-      { name: '收益報表', href: '/user/investment/profit' },
+      { name: '案件總覽', href: '/dashboard/user/list' },
+      { name: '投資庫存', href: '/dashboard/user/inventory' },
+      { name: '收益報表', href: '/dashboard/user/profit' },
     ],
   },
   {
@@ -39,9 +39,9 @@ const links = [
     href: '',
     icon: CurrencyDollarIcon,
     children: [
-      { name: '新申購審核', href: '/finance/purchase' },
-      { name: '月分潤審核', href: '/finance/profit' },
-      { name: '到期案件審核', href: '/finance/investment/expire' },
+      { name: '新申購審核', href: '/dashboard/finance/purchase' },
+      { name: '月分潤審核', href: '/dashboard/finance/profit' },
+      { name: '到期案件審核', href: '/dashboard/finance/expire' },
     ],
   },
   // {
@@ -49,12 +49,12 @@ const links = [
   //   href: '',
   //   icon: HomeIcon,
   //   children: [
-  //     { name: '全部案件', href: '/investment/list' },
-  //     { name: '月現金流報表', href: '/report/cashFlow' },
+  //     { name: '全部案件', href: '/dashboard/investment/list' },
+  //     { name: '月現金流報表', href: '/dashboard/cashFlow' },
   //   ],
   // },
-  { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  // { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
+  // { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {

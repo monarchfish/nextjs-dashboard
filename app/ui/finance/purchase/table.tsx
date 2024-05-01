@@ -1,8 +1,8 @@
-import { DeleteButton, EditButton } from './buttons';
+import { ViewButton } from './buttons';
 import { fetchInvestmentList } from '@/app/lib/manager/data';
 import { formatDateToLocal } from '@/app/lib/utils';
 
-export default async function InvestmentTable({
+export default async function InventoryTable({
   query,
   currentPage,
   showDelete = true,
@@ -28,22 +28,19 @@ export default async function InvestmentTable({
                       ID
                     </th> */}
                     <th scope="col" className="px-3 py-5 font-medium">
-                      名稱
+                      案件名稱
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      描述
+                      總金額
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      單位價格
+                      申購日期
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      預期報酬
+                      申購數量
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      到期時間
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
-                      經理人
+                      申購人
                     </th>
                     {(showEdit || showDelete) && (
                       <th scope="col" className="px-3 py-5 font-medium">
@@ -54,42 +51,32 @@ export default async function InvestmentTable({
                 </thead>
 
                 <tbody className="divide-y divide-gray-200 text-gray-900">
-                  {dataList.map((data) => (
-                    <tr key={data.id} className="group">
+                  {[1,5,8,11,18].map((data) => (
+                    <tr key={data} className="group">
                       {/* <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {data.id}
                       </td> */}
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.investment_name}
+                        {`案件名稱${data}`}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.description}
+                        ${data*2385}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.price}
-                      </td>
-                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm group-first-of-type:rounded-md group-last-of-type:rounded-md">
-                        {data.profit}%
+                        {'2024-11-30'}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {formatDateToLocal(data.exprie_date)}
+                        {data*100}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {data.user_name}
+                        {'王先生'}
                       </td>
                       {(showEdit || showDelete) && (
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                           <div className="flex justify-end gap-3">
-                            {showEdit && (
-                              <EditButton
-                                id={data.id}
-                              />
-                            )}
-                            {showDelete && (
-                              <DeleteButton
-                                id={data.id}
-                              />
-                            )}
+                            <ViewButton
+                              id={data.id}
+                            />
                           </div>
                         </td>
                       )}

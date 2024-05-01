@@ -4,31 +4,43 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { auth } from "@/auth"
 
 const FormSchema = z.object({
     id: z.string(),
-    caseName: z.string(),
-    createTime: z.string(),
-    updateTime: z.string()
+    name: z.string().trim().min(1, { message: "Please input name" }),
+    description: z.string().trim().min(1, { message: "Please input description" }),
+    price: z.coerce.number().gt(0, { message: 'Please enter an price greater than $0.' }),
+    amount: z.coerce.number().gt(0, { message: 'Please enter an price greater than $0.' }),
+    profit: z.coerce.number().gt(0, { message: 'Please enter an profit greater than 0%.' }),
+    exprie_date: z.string(),
 });
 
-const CreateInvestment = FormSchema.omit({ id: true, createTime: true, updateTime: true });
-const UpdateInvestment = FormSchema.omit({ id: true, createTime: true, updateTime: true });
+const CreateInvestment = FormSchema.omit({ id: true, updateTime: true });
+const UpdateInvestment = FormSchema.omit({ id: true, updateTime: true });
 
 export type State = {
     errors?: {
-        caseName?: string[],
+        name?: string[],
+        description?: string[],
+        price?: string[],
+        amount?: string[],
+        profit?: string[],
+        exprie_date?: string[],
     };
     message?: string | null;
 };
 
 export async function createInvestment(prevState: State, formData: FormData) {
-    // Validate form fields using Zod
     const validatedFields = CreateInvestment.safeParse({
-        caseName: formData.get('caseName')
+        name: formData.get('name'),
+        description: formData.get('description'),
+        price: formData.get('price'),
+        amount: formData.get('amount'),
+        profit: formData.get('profit'),
+        exprie_date: formData.get('exprie_date'),
     });
 
-    // If form validation fails, return errors early. Otherwise, continue.
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
@@ -36,24 +48,24 @@ export async function createInvestment(prevState: State, formData: FormData) {
         };
     }
 
-    // Prepare data for insertion into the database
-    const { caseName } = validatedFields.data;
-    //   const amountInCents = amount * 100;
-    //   const date = new Date().toISOString().split('T')[0];
+    const { name, description, price, amount, profit, exprie_date } = validatedFields.data;
+    const session = await auth()
+    const user_id = session?.user?.id
+    const status = 'pending'
 
-    //   try {
-    //     await sql`
-    //       INSERT INTO invoices (customer_id, amount, status, date)
-    //       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-    //     `;
-    //   } catch (error) {
-    //     return {
-    //       message: 'Database Error: Failed to Create Invoice.',
-    //     };
-    //   }
+    try {
+        await sql`
+          INSERT INTO investments (user_id, name, description, price, amount, profit, exprie_date, status)
+          VALUES (${user_id}, ${name}, ${description}, ${price}, ${amount}, ${profit}, ${exprie_date}, ${status})
+        `;
+    } catch (error) {
+        return {
+            message: 'Database Error: Failed to Create investment.',
+        };
+    }
 
-    revalidatePath('/dashboard/manager/investment/list');
-    redirect('/dashboard/manager/investment/list');
+    revalidatePath('/dashboard/manager/list');
+    redirect('/dashboard/manager/list');
 }
 
 export async function updateInvestment(
@@ -62,44 +74,51 @@ export async function updateInvestment(
     formData: FormData,
 ) {
     const validatedFields = UpdateInvestment.safeParse({
-        caseName: formData.get('caseName'),
+        name: formData.get('name'),
+        description: formData.get('description'),
+        price: formData.get('price'),
+        amount: formData.get('amount'),
+        profit: formData.get('profit'),
+        exprie_date: formData.get('exprie_date'),
     });
 
-    // If form validation fails, return errors early. Otherwise, continue.
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Failed to Create Invoice.',
+            message: 'Missing Fields. Failed to Create investment.',
         };
     }
 
-    // Prepare data for insertion into the database
-    const { caseName } = validatedFields.data;
-    //   const amountInCents = amount * 100;
+    const { name, description, price, amount, profit, exprie_date } = validatedFields.data;
 
-    //   try {
-    //     await sql`
-    //       UPDATE invoices
-    //       SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
-    //       WHERE id = ${id}
-    //     `;
-    //   } catch (error) {
-    //     return { message: 'Database Error: Failed to Update Invoice.' };
-    //   }
+    try {
+        await sql`
+            UPDATE investments
+            SET name = ${name},
+                description = ${description},
+                price = ${price},
+                amount = ${amount},
+                profit = ${profit},
+                exprie_date = ${exprie_date}
+            WHERE id = ${id}
+        `;
+    } catch (error) {
+        console.log(error)
+        return {
+            message: 'Database Error: Failed to Update investment.',
+        };
+    }
 
-    revalidatePath('/dashboard/manager/investment/list');
-    redirect('/dashboard/manager/investment/list');
+    revalidatePath('/dashboard/manager/list');
+    redirect('/dashboard/manager/list');
 }
 
 export async function deleteInvestment(id: string) {
-    console.dir('delete!')
-    // throw new Error('Failed to Delete data');
-
     try {
-        // await sql`DELETE FROM invoices WHERE id = ${id}`;
-        // revalidatePath('/dashboard/invoices');
-        return { message: 'Deleted Invoice.' };
-      } catch (error) {
-        return { message: 'Database Error: Failed to Delete Invoice.' };
-      }
+        await sql`DELETE FROM investments WHERE id = ${id}`;
+        revalidatePath('/dashboard/manager/list');
+        return { message: 'Deleted investment.' };
+    } catch (error) {
+        return { message: 'Database Error: Failed to Delete investment.' };
+    }
 }

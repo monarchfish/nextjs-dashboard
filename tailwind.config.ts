@@ -18,6 +18,14 @@ const config: Config = {
           600: '#2F6FEB',
         },
       },
+      spacing: {
+        // 自定義範例 pl-100px, 也可以使用中括號 pl-[100px] 就不御用定義
+        '100px': '100px',
+      },
+      padding: {
+        // 自定義範例 pl-200px, 也可以使用中括號 pl-[200px] 就不御用定義
+        '200px': '200px',
+      }
     },
     keyframes: {
       shimmer: {
