@@ -75,7 +75,7 @@ export default async function InventoryTable({
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                           <div className="flex justify-end gap-3">
                             <ViewButton
-                              id={data.id}
+                              id={''+data}
                             />
                           </div>
                         </td>
