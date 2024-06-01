@@ -31,6 +31,12 @@ const links = [
       { name: 'continue2', href: '/dashboard/user/profit' },
     ],
   },
+  {
+    name: 'Game',
+    href: '/game',
+    icon: UserIcon,
+    target: 'blank'
+  }
   // {
   //   name: '使用者',
   //   href: '',
@@ -82,6 +88,7 @@ export default function NavLinks() {
                   'bg-sky-100 text-blue-600': pathname === link.href,
                 },
               )}
+              target={link.target}
             >
               <LinkIcon className="w-6" />
               <span>{link.name}</span>
