@@ -1,4 +1,4 @@
-import MainPage from '@/app/ui/cssDemo/diceGame';
+import MainPage from './mainPage';
 import { Metadata } from 'next';
  
 export const metadata: Metadata = {

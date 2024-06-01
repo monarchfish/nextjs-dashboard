@@ -16,6 +16,8 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
+  { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
+  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
   {
     name: 'Basic CRUD',
     href: '/dashboard/manager/list',
@@ -36,38 +38,7 @@ const links = [
     href: '/game',
     icon: UserIcon,
     target: 'blank'
-  }
-  // {
-  //   name: '使用者',
-  //   href: '',
-  //   icon: UserIcon,
-  //   children: [
-  //     { name: '案件總覽', href: '/dashboard/user/list' },
-  //     { name: '投資庫存', href: '/dashboard/user/inventory' },
-  //     { name: '收益報表', href: '/dashboard/user/profit' },
-  //   ],
-  // },
-  // {
-  //   name: '財務人員',
-  //   href: '',
-  //   icon: CurrencyDollarIcon,
-  //   children: [
-  //     { name: '新申購審核', href: '/dashboard/finance/purchase' },
-  //     { name: '月分潤審核', href: '/dashboard/finance/profit' },
-  //     { name: '到期案件審核', href: '/dashboard/finance/expire' },
-  //   ],
-  // },
-  // {
-  //   name: '執行長',
-  //   href: '',
-  //   icon: HomeIcon,
-  //   children: [
-  //     { name: '全部案件', href: '/dashboard/investment/list' },
-  //     { name: '月現金流報表', href: '/dashboard/cashFlow' },
-  //   ],
-  // },
-  // { name: 'Invoices', href: '/dashboard/invoices', icon: DocumentDuplicateIcon },
-  // { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  },
 ];
 
 export default function NavLinks() {

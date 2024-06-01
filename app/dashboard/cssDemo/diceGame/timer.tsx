@@ -1,11 +1,8 @@
 "use client"
 
-import CountDown from './countDown';
-import Dice from './dice';
-import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 
-export default function Main() {
+export default function Main(): [number[], String] {
     const [seconds, setSeconds] = useState('');
     const [openResult, setOpenResult] = useState([0, 0, 0]);
 
@@ -22,19 +19,22 @@ export default function Main() {
     }
 
     useEffect(() => {
+        let perviusSecond = -1
         setSeconds('--')
         setOpenResult(getRandomArray())
 
         const interval = setInterval(() => {
             const currentTime = new Date();
             const secondsInMinute = currentTime.getSeconds() % 15;
+            if (perviusSecond === secondsInMinute) return
+            perviusSecond = secondsInMinute
 
             switch (secondsInMinute) {
                 case 0:
                     setSeconds('opening...');
                     setOpenResult([0, 0, 0]);
                     break;
-                case 3:
+                case 5:
                     setOpenResult(getRandomArray());
                     break;
                 default:
@@ -48,14 +48,5 @@ export default function Main() {
         return () => clearInterval(interval);
     }, []);
 
-    const diceList = openResult.map((e, i) => (<Dice state={e} key={i} />))
-
-    return (
-        <div className={styles.openResult}>
-            <CountDown text={seconds}/>
-            <div className={styles.diceList}>
-                {diceList}
-            </div>
-        </div>
-    );
+    return [openResult, seconds]
 }
