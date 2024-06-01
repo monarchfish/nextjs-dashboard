@@ -6,7 +6,7 @@ export default async function InvestmentTable({
   query,
   currentPage,
   showDelete = true,
-  showEdit = true
+  showEdit = true,
 }: {
   query: string;
   currentPage: number;
@@ -28,26 +28,26 @@ export default async function InvestmentTable({
                       ID
                     </th> */}
                     <th scope="col" className="px-3 py-5 font-medium">
-                      名稱
+                      Name
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      描述
+                      Description
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      單位價格
+                      Price
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      預期報酬
+                      Profit
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      到期時間
+                      Expire
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      經理人
+                      User
                     </th>
                     {(showEdit || showDelete) && (
                       <th scope="col" className="px-3 py-5 font-medium">
-                        操作
+                        operation
                       </th>
                     )}
                   </tr>
@@ -80,16 +80,8 @@ export default async function InvestmentTable({
                       {(showEdit || showDelete) && (
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                           <div className="flex justify-end gap-3">
-                            {showEdit && (
-                              <EditButton
-                                id={data.id}
-                              />
-                            )}
-                            {showDelete && (
-                              <DeleteButton
-                                id={data.id}
-                              />
-                            )}
+                            {showEdit && <EditButton id={data.id} />}
+                            {showDelete && <DeleteButton id={data.id} />}
                           </div>
                         </td>
                       )}

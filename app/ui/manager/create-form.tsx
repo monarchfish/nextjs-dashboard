@@ -18,37 +18,37 @@ export default function Form() {
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         <BaseInput
           name="name"
-          label="案件名稱"
+          label="Name"
           inputType="text"
           errors={state.errors?.name ? state.errors.name : []}
         />
         <BaseInput
           name="description"
-          label="描述"
+          label="Description"
           inputType="text"
           errors={state.errors?.description ? state.errors.description : []}
         />
         <BaseInput
           name="price"
-          label="單位價格"
+          label="Price"
           inputType="number"
           errors={state.errors?.price ? state.errors.price : []}
         />
         <BaseInput
           name="amount"
-          label="單位數量"
+          label="Amount"
           inputType="number"
           errors={state.errors?.amount ? state.errors.amount : []}
         />
         <BaseInput
           name="profit"
-          label="預期報酬"
+          label="Profit"
           inputType="number"
           errors={state.errors?.profit ? state.errors.profit : []}
         />
         <BaseInput
           name="exprie_date"
-          label="到期時間"
+          label="Exprie date"
           inputType="text"
           errors={state.errors?.exprie_date ? state.errors.exprie_date : []}
           defaultValue={new Date().toISOString().split('T')[0]}
@@ -65,9 +65,9 @@ export default function Form() {
           href="/dashboard/manager/list"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          取消
+          Cancel
         </Link>
-        <Button type="submit">新增案件</Button>
+        <Button type="submit">Create</Button>
       </div>
     </form>
   );
