@@ -26,7 +26,7 @@ const links = [
     href: '',
     icon: UserIcon,
     children: [
-      { name: 'Dice', href: '/dashboard/cssDemo/dice' },
+      { name: 'Dice', href: '/dashboard/cssDemo/diceGame' },
       { name: 'continue1', href: '/dashboard/user/inventory' },
       { name: 'continue2', href: '/dashboard/user/profit' },
     ],
