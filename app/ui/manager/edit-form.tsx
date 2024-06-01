@@ -21,42 +21,42 @@ export default function EditTable({
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         <BaseInput
           name="name"
-          label="案件名稱"
+          label="Name"
           inputType="text"
           errors={state.errors?.name ? state.errors.name : []}
           defaultValue={investment.name}
         />
         <BaseInput
           name="description"
-          label="描述"
+          label="Description"
           inputType="text"
           errors={state.errors?.description ? state.errors.description : []}
           defaultValue={investment.description}
         />
         <BaseInput
           name="price"
-          label="單位價格"
+          label="Price"
           inputType="number"
           errors={state.errors?.price ? state.errors.price : []}
           defaultValue={investment.price}
         />
         <BaseInput
           name="amount"
-          label="單位數量"
+          label="Amount"
           inputType="number"
           errors={state.errors?.amount ? state.errors.amount : []}
           defaultValue={investment.amount}
         />
         <BaseInput
           name="profit"
-          label="預期報酬"
+          label="Profit"
           inputType="number"
           errors={state.errors?.profit ? state.errors.profit : []}
           defaultValue={investment.profit}
         />
         <BaseInput
           name="exprie_date"
-          label="到期時間"
+          label="Exprie date"
           inputType="text"
           errors={state.errors?.exprie_date ? state.errors.exprie_date : []}
           defaultValue={new Date(investment.exprie_date).toISOString().split('T')[0]}
@@ -73,9 +73,9 @@ export default function EditTable({
           href="/dashboard/manager/list"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
-          取消
+          Cancel
         </Link>
-        <Button type="submit">確認更新</Button>
+        <Button type="submit">Confirm</Button>
       </div>
     </form>
   );

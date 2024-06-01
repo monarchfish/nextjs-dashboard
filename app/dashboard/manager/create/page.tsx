@@ -7,9 +7,9 @@ export default async function Page() {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: '案件列表', href: '/dashboard/manager/list' },
+          { label: 'CRUD', href: '/dashboard/manager/list' },
           {
-            label: '新建案件',
+            label: 'Create',
             href: '/dashboard/manager/create',
             active: true,
           },
