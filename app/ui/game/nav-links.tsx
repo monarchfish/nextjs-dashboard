@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  UserIcon
+  CubeIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,7 @@ const links = [
   {
     name: 'Game',
     href: '/game',
-    icon: UserIcon,
+    icon: CubeIcon,
     children: [
       { name: 'DrawCard', href: '/game/drawCard' }
     ]
