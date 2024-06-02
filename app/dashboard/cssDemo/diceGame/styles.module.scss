@@ -1,5 +1,5 @@
 .openResult {
-  border-radius: 15px;
+  border-radius: 15px 15px 0 0;
   background-color: rgb(81, 132, 234);
   padding: 20px 20px 40px;
   box-shadow: 5px 5px 10px #afafaf;
@@ -11,4 +11,38 @@
     justify-content: space-around;
     align-items: flex-end;
   }
+}
+.bettingArea {
+  background-color: #22b022;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  padding: 10px;
+  box-shadow: 5px 5px 10px #afafaf;
+  margin-bottom: 20px;
+  .item {
+    height: 150px;
+    font-size: 36px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin: 10px;
+    box-sizing: border-box;
+    &:hover {
+      border: 2px solid #c7ef76;
+      color: #c7ef76;
+    }
+  }
+}
+.chipArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  background-color: lightgrey;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #afafaf;
 }

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-export default function Dice({ state }: { state: Number }) {
+export default function Dice({ state }: { state: number }) {
     return (
         <div className={styles.dice}>
             <div className={`${styles.cube} ${styles['result' + state]}`}>

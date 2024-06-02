@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function Main(): [number[], String] {
+export default function Main(): [number[], string] {
     const [seconds, setSeconds] = useState('');
     const [openResult, setOpenResult] = useState([0, 0, 0]);
 
@@ -20,8 +20,8 @@ export default function Main(): [number[], String] {
 
     useEffect(() => {
         let perviusSecond = -1
-        setSeconds('--')
-        setOpenResult(getRandomArray())
+        setSeconds('opening...')
+        setOpenResult([0, 0, 0])
 
         const interval = setInterval(() => {
             const currentTime = new Date();
