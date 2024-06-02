@@ -7,6 +7,11 @@
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px #afafaf;
+  transition: transform 0.2s ease-in-out;
+  user-select: none;
+  &.active {
+    transform: translateY(-10px);
+  }
 
   .cirle {
     width: 60px;

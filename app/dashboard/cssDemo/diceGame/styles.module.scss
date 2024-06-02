@@ -12,6 +12,7 @@
     align-items: flex-end;
   }
 }
+
 .bettingArea {
   background-color: #22b022;
   border-radius: 0 0 15px 15px;
@@ -19,6 +20,8 @@
   padding: 10px;
   box-shadow: 5px 5px 10px #afafaf;
   margin-bottom: 20px;
+  user-select: none;
+
   .item {
     height: 150px;
     font-size: 36px;
@@ -31,12 +34,33 @@
     border-radius: 15px;
     margin: 10px;
     box-sizing: border-box;
-    &:hover {
-      border: 2px solid #c7ef76;
-      color: #c7ef76;
+    cursor: pointer;
+
+    // &:hover {
+    //   border: 2px solid #c7ef76;
+    //   color: #c7ef76;
+    // }
+
+    &.winner {
+      animation: onWinner 0.5s ease-in-out infinite alternate;
     }
   }
 }
+
+@keyframes onWinner {
+  0% {
+    box-shadow: 0 0 0 yellow;
+    border: 2px solid white;
+    color: white;
+  }
+
+  100% {
+    box-shadow: 0 0 5px yellow;
+    border: 2px solid yellow;
+    color: yellow;
+  }
+}
+
 .chipArea {
   display: flex;
   align-items: center;
@@ -45,4 +69,16 @@
   background-color: lightgrey;
   border-radius: 15px;
   box-shadow: 5px 5px 10px #afafaf;
+}
+
+.flyChipArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &>* {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }

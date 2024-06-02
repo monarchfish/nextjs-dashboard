@@ -20,6 +20,7 @@ export default function Main(): [number[], string] {
 
     useEffect(() => {
         let perviusSecond = -1
+        let nextResult = [0, 0, 0]
         setSeconds('opening...')
         setOpenResult([0, 0, 0])
 
@@ -33,9 +34,16 @@ export default function Main(): [number[], string] {
                 case 0:
                     setSeconds('opening...');
                     setOpenResult([0, 0, 0]);
+                    nextResult = getRandomArray()
                     break;
-                case 5:
-                    setOpenResult(getRandomArray());
+                case 2:
+                    setOpenResult([nextResult[0], 0, 0]);
+                    break;
+                case 3:
+                    setOpenResult([nextResult[0], nextResult[1], 0]);
+                    break;
+                case 4:
+                    setOpenResult(nextResult);
                     break;
                 default:
                     if (secondsInMinute >= 5) {

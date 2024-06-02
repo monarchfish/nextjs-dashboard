@@ -1,6 +1,17 @@
 import styles from './styles.module.scss';
+import { clsx } from 'clsx';
 
-export default function Dice({ state }: { state: number }) {
+export default function Dice({
+    state,
+    active,
+    handleSlected,
+    style = { transform: '' },
+}: {
+    state: number,
+    active: boolean,
+    handleSlected?: React.MouseEventHandler<HTMLDivElement>,
+    style?: { transform: string },
+}) {
     const mapping = [
         {
             price: 1,
@@ -26,7 +37,14 @@ export default function Dice({ state }: { state: number }) {
     const data = mapping[state]
 
     return (
-        <div className={styles.chip} style={{ backgroundColor: data.color }}>
+        <div
+            className={clsx(styles.chip, active ? styles.active : '')}
+            style={{
+                backgroundColor: data.color,
+                ...style
+            }}
+            onClick={handleSlected}
+        >
             <div className={styles.cirle}>
                 <div className={styles.price}>
                     {data.price}
