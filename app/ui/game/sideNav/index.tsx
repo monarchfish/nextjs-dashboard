@@ -10,11 +10,15 @@ export default function SideNav() {
         className={`mb-2 flex h-20 items-end justify-start rounded-md p-4 md:h-40 ${styles.titleBg}`}
         href="/"
       >
-        Games
+        <div className="text-white">
+          <AcmeLogo title="GAMES" />
+        </div>
       </Link>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+      <div
+        className={`flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2 rounded-md ${styles.sideBg}`}
+      >
         <NavLinks />
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
+        <div className="hidden h-auto w-full grow rounded-md md:block"></div>
       </div>
     </div>
   );
